@@ -1,0 +1,26 @@
+<!Doctype html>
+<html>
+    <head>
+        <title>Todo App</title>
+        <style>
+            body {
+                background: rgb(43, 133, 21);
+                color: rgb(62, 17, 17);
+                font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>My ToDo Application</h1>
+        <ul>
+            {%for x in todos%}
+                <li>{{x}}</li>  
+            {%endfor%}
+        </ul>
+        <form method="POST">
+            <input name="new_todo">
+            <input type="submit">
+        </form>
+    </body>
+</html>
