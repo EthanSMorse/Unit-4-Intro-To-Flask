@@ -16,6 +16,9 @@
         <ul>
             {%for x in todos%}
                 <li>{{x}}</li>  
+                <form method="POST" action="/delete_todo/{{loop.index0}}">
+                    <input type="submit" value="Delete">
+                </form>
             {%endfor%}
         </ul>
         <form method="POST">
