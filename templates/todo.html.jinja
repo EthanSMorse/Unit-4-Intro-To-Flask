@@ -14,8 +14,8 @@
     <body>
         <h1>My ToDo Application</h1>
         <ul>
-            {%for x in todos%}
-                <li>{{x}}</li>  
+            {%for x in results%}
+                <li>{{x['description']}}</li>  
                 <form method="POST" action="/delete_todo/{{loop.index0}}">
                     <input type="submit" value="Delete">
                 </form>
