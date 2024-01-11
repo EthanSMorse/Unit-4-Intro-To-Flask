@@ -1,29 +1,34 @@
 <!Doctype html>
 <html>
-    <head>
-        <title>Todo App</title>
-        <style>
-            body {
-                background: rgb(43, 133, 21);
-                color: rgb(62, 17, 17);
-                font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            }
-        </style>
-    </head>
 
-    <body>
-        <h1>My ToDo Application</h1>
-        <ul>
-            {%for x in results%}
-                <li>{{x['description']}}</li>  
-                <form method="POST" action="/delete_todo/{{loop.index0}}">
-                    <input type="submit" value="Delete">
-                </form>
-            {%endfor%}
-        </ul>
+<head>
+    <title>Todo App</title>
+    <style>
+        body {
+            background: rgb(43, 133, 21);
+            color: rgb(62, 17, 17);
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>My ToDo Application</h1>
+    {%for x in todos%}
+    <div class="{%if x['complete']%}complete{%endif%}">
+        <li>{{x['description']}}</li>
+        {%if x['complete']%}✔{%endif%}
+        <form method="POST" action="/complete_todo/{{x['id']}}">
+            <input type="submit" value="Complete" class="{%if x['complete'] == 1%}hidden{%endif%}">
+        </form>
+        <form method="POST" action="/delete_todo/{{x['id']}}">
+            <input type="submit" value="Delete">
+        </form>
+        {%endfor%}
         <form method="POST">
-            <input name="new_todo">
+            <input name="new_todo" placeholder="Please enter ToDo here">
             <input type="submit">
         </form>
-    </body>
+</body>
+
 </html>
