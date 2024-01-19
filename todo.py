@@ -33,17 +33,17 @@ conn = pymysql.connect(
 @app.route('/', methods=['GET', 'POST'])
 @auth.login_required
 def index():
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM `todos` ORDER BY `complete`")
-    results = cursor.fetchall()
-    cursor.close()
-
     if request.method == 'POST':
         new_todo = request.form["new_todo"]
         cursor = conn.cursor()
         cursor.execute(f"INSERT INTO `todos`(`description`) VALUES('{new_todo}')")
         cursor.close()
         conn.commit()
+
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM `todos` ORDER BY `complete`")
+    results = cursor.fetchall()
+    cursor.close()
 
     return render_template("todo.html.jinja", todos=results)
 
